@@ -1,6 +1,15 @@
 # stats
 Generate quarterly stats
 
+Installation
+============
+
+This needs to be installed on the server running ckanpackager.
+
+
+
+
+
 
 Stats.db
 ========
