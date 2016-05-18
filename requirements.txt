@@ -1,0 +1,8 @@
+Beaker==1.8.0
+beautifulsoup4==4.4.1
+bs4==0.0.1
+requests==2.10.0
+requests-cache==0.4.12
+sortedcontainers==1.4.4
+texttable==0.8.2
+timestring==1.6.2
