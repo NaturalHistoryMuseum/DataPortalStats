@@ -141,7 +141,6 @@ def generate_report(year=None, quarter=None):
 
     # Loop through requests, adding them to the stats
     for request in requests:
-        print(request)
         resource_id = request[2]
         ts = datetime.datetime.fromtimestamp(request[3])
         count = int(request[4]) if request[4] else None
