@@ -153,7 +153,7 @@ def generate_report(year=None, quarter=None):
         ('other_records', 'Other records'),
         ('gbif_records', 'GBIF records'),
         ('collection_download_events', 'Collection download events'),
-        ('other_download_events', 'Other download events'),
+        # ('other_download_events', 'Other download events'),
         ('gbif_download_events', 'GBIF download events'),
     ])
 
