@@ -19,11 +19,12 @@ from beaker.util import parse_cache_config_options
 OFFSET_INTERVAL = 10  # Num per page, on GBIF known as offset interval
 
 cache_opts = {
-             'cache.type': 'file',
-             'cache.data_dir': '/tmp/.beaker_cache',
-             }
+    'cache.type': 'file',
+    'cache.data_dir': '/tmp/.beaker_cache',
+}
 
 cache = CacheManager(**parse_cache_config_options(cache_opts))
+
 
 @cache.cache('gbif', expire=14400)
 def gbif_downloads():
@@ -35,7 +36,8 @@ def gbif_downloads():
     """
 
     config = ConfigParser()
-    config.read(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'config.cfg'))
+    config.read(os.path.join(os.path.dirname(
+        os.path.dirname(__file__)), 'config.cfg'))
     dataset_uuid = config.get('gbif', 'dataset_uuid')
 
     downloads = {}
@@ -47,10 +49,11 @@ def gbif_downloads():
         print 'Retrieving page offset %s' % offset
 
         # Build URL
-        url = os.path.join('http://www.gbif.org/dataset', dataset_uuid, 'activity')
+        url = os.path.join('http://www.gbif.org/dataset',
+                           dataset_uuid, 'activity')
         r = requests.get(url,  params={'offset': offset})
         # Get some soup
-        soup = BeautifulSoup(r.content)
+        soup = BeautifulSoup(r.content, "html.parser")
 
         records = soup.find_all('div', class_="result")
 
@@ -65,7 +68,6 @@ def gbif_downloads():
             date_object = datetime.strptime(date_str, '%d %B %Y')
 
             key = '%s-%s' % (date_object.month, date_object.year)
-
             try:
                 downloads[key]
             except:
@@ -76,7 +78,8 @@ def gbif_downloads():
 
             # Lets get the counts
             records_dt = record.find("dt", text="Records")
-            num_downloads = int(re.search(r'(\d+)', records_dt.find_next('dd').text).group(1))
+            num_downloads = int(
+                re.search(r'(\d+)', records_dt.find_next('dd').text).group(1))
 
             downloads[key]['download_events'] += 1
             downloads[key]['records'] += num_downloads
