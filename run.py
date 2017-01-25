@@ -95,20 +95,20 @@ def generate_report(year=None, quarter=None):
     config.read(os.path.join(dir, 'config.cfg'))
 
     report = SortedDict()
-    # gbif = gbif_downloads()
+    gbif = gbif_downloads()
 
-    # for date_str, downloads in gbif.items():
+    for date_str, downloads in gbif.items():
 
-    #     m, y = map(int, date_str.split('-'))
+        m, y = map(int, date_str.split('-'))
 
-    #     if year and y != year:
-    #         continue
+        if year and y != year:
+            continue
 
-    #     if quarter and m not in quarter_months[quarter]:
-    #         continue
+        if quarter and m not in quarter_months[quarter]:
+            continue
 
-    #     report_add_entry(report, y, m, 'gbif_records', downloads['records'])
-    #     report_add_entry(report, y, m, 'gbif_download_events', downloads['download_events'])
+        report_add_entry(report, y, m, 'gbif_records', downloads['records'])
+        report_add_entry(report, y, m, 'gbif_download_events', downloads['download_events'])
 
 
     last_timestamp = 0
