@@ -42,7 +42,7 @@ def gbif_downloads():
 
     downloads = {}
 
-    requests_cache.install_cache('/tmp/.gbif')
+    # requests_cache.install_cache('/tmp/.gbif')
     offset = 0
 
     while True:
