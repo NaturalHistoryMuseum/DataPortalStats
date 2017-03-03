@@ -26,7 +26,7 @@ cache_opts = {
 cache = CacheManager(**parse_cache_config_options(cache_opts))
 
 
-@cache.cache('gbif', expire=14400)
+# @cache.cache('gbif', expire=14400)
 def gbif_downloads():
     """
     Scrape the GBIF site for download events of Museum records
@@ -42,7 +42,7 @@ def gbif_downloads():
 
     downloads = {}
 
-    # requests_cache.install_cache('/tmp/.gbif')
+    requests_cache.install_cache('/tmp/.gbif')
     offset = 0
 
     while True:
